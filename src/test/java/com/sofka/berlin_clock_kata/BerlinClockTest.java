@@ -1,9 +1,13 @@
 package com.sofka.berlin_clock_kata;
 
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+@RunWith(JUnitParamsRunner.class)
 public class BerlinClockTest {
 
     private BerlinClock berlinClock;
@@ -14,53 +18,17 @@ public class BerlinClockTest {
     }
 
     @Test
-    public void methodSingleMinutesRowShouldReturnOOOOWhenTheTimeIs00h00m00s() {
-        String time = "00:00:00";
-        String expectResult = "OOOO";
-
+    @Parameters({
+            "00:00:00, OOOO",
+            "23:59:59, YYYY",
+            "12:32:00, YYOO",
+            "12:34:00, YYYY",
+            "12:35:00, OOOO",
+    })
+    public void methodSingleMinutesRowShouldReturnExpectedResultWhenEnterTime(String time, String expectedResult) {
         String result = berlinClock.singleMinutesRow(time);
 
-        Assert.assertEquals(expectResult, result);
-    }
-
-    @Test
-    public void methodSingleMinutesRowShouldReturnYYYYWhenTheTimeIs23h59m59s() {
-        String time = "23:59:59";
-        String expectResult = "YYYY";
-
-        String result = berlinClock.singleMinutesRow(time);
-
-        Assert.assertEquals(expectResult, result);
-    }
-
-    @Test
-    public void methodSingleMinutesRowShouldReturnYYDDWhenTheTimeIs12h32m00s() {
-        String time = "12:32:00";
-        String expectResult = "YYOO";
-
-        String result = berlinClock.singleMinutesRow(time);
-
-        Assert.assertEquals(expectResult, result);
-    }
-
-    @Test
-    public void methodSingleMinutesRowShouldReturnYYYYWhenTheTimeIs12h34m00s() {
-        String time = "12:34:00";
-        String expectResult = "YYYY";
-
-        String result = berlinClock.singleMinutesRow(time);
-
-        Assert.assertEquals(expectResult, result);
-    }
-
-    @Test
-    public void methodSingleMinutesRowShouldReturnYYYYWhenTheTimeIs12h35m00s() {
-        String time = "12:35:00";
-        String expectResult = "OOOO";
-
-        String result = berlinClock.singleMinutesRow(time);
-
-        Assert.assertEquals(expectResult, result);
+        Assert.assertEquals(expectedResult, result);
     }
 
 }
