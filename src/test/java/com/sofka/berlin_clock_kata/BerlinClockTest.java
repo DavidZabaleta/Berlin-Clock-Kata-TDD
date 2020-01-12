@@ -20,6 +20,7 @@ public class BerlinClockTest {
     @Test
     @Parameters({
             "00:00:00, OOOO",
+            "12:07:32, YYOO",
             "23:59:59, YYYY",
             "12:32:00, YYOO",
             "12:34:00, YYYY",
@@ -34,6 +35,7 @@ public class BerlinClockTest {
     @Test
     @Parameters({
             "00:00:00, OOOOOOOOOOO",
+            "03:42:20, YYRYYRYYOOO",
             "23:59:59, YYRYYRYYRYY",
             "12:04:00, OOOOOOOOOOO",
             "12:23:00, YYRYOOOOOOO",
@@ -48,6 +50,7 @@ public class BerlinClockTest {
     @Test
     @Parameters({
             "00:00:00, OOOO",
+            "07:32:45, RROO",
             "23:59:59, RRRO",
             "02:04:00, RROO",
             "08:23:00, RRRO",

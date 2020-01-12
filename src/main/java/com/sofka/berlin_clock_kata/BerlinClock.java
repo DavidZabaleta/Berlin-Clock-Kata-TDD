@@ -40,4 +40,13 @@ public class BerlinClock {
         }
         return result.toString();
     }
+
+    public String singleHoursRow(String time) {
+        int singleHours  = Integer.parseInt(time.replace(":", "").substring(1,2));
+        StringBuilder result = new StringBuilder("OOOO");
+
+        for (int i = 0; i < singleHours % 5; i++) result.setCharAt(i, RED_BLOCK);
+
+        return result.toString();
+    }
 }
