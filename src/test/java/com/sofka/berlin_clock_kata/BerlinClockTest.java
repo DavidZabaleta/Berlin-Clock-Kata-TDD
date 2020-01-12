@@ -44,4 +44,18 @@ public class BerlinClockTest {
 
         Assert.assertEquals(expectedResult, result);
     }
+
+    @Test
+    @Parameters({
+            "00:00:00, OOOO",
+            "23:59:59, RRRO",
+            "02:04:00, RROO",
+            "08:23:00, RRRO",
+            "14:35:00, RRRR",
+    })
+    public void methodSingleHoursRowShouldReturnExpectedResultWhenEnterTime(String time, String expectedResult) {
+        String result = berlinClock.singleHoursRow(time);
+
+        Assert.assertEquals(expectedResult, result);
+    }
 }
