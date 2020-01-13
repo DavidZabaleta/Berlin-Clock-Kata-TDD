@@ -76,4 +76,19 @@ public class BerlinClockTest {
 
         Assert.assertEquals(expectedResult, result);
     }
+
+    @Test
+    @Parameters({
+            "00:00:00, Y",
+            "23:59:59, O",
+            "20:16:32, Y",
+            "01:53:18, Y",
+            "16:22:45, O",
+            "00:05:07, O",
+    })
+    public void methodSecondsLampShouldReturnExpectedResultWhenEnterTime(String time, String expectedResult) {
+        String result = berlinClock.secondsLamp(time);
+
+        Assert.assertEquals(expectedResult, result);
+    }
 }
