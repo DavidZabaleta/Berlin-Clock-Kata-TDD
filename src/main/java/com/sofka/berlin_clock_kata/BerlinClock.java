@@ -51,8 +51,8 @@ public class BerlinClock {
     }
 
     public String fiveHoursRow(String time) {
-        int hour  = Integer.parseInt(time.replace(":", "").substring(0,2));
-        int hourBlock = hour / 5;
+        int hours  = Integer.parseInt(time.replace(":", "").substring(0,2));
+        int hourBlock = hours / 5;
         StringBuilder result = new StringBuilder("OOOO");
 
         for (int i = 0; i < hourBlock; i++) {
@@ -60,5 +60,10 @@ public class BerlinClock {
         }
 
         return result.toString();
+    }
+
+    public String secondsLamp(String time) {
+        int seconds  = Integer.parseInt(time.replace(":", "").substring(4,6));
+        return (seconds % 2 == 0) ? String.valueOf(YELLOW_BLOCK) : String.valueOf(OFF_BLOCK);
     }
 }
