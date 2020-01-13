@@ -5,6 +5,11 @@ public class BerlinClock {
     private static final char YELLOW_BLOCK = 'Y';
     private static final char RED_BLOCK = 'R';
 
+    public String entireBerlinClock(String time) {
+        return secondsLamp(time) + fiveHoursRow(time) + singleHoursRow(time) +
+               fiveMinutesRow(time) + singleMinutesRow(time);
+    }
+
     public String singleMinutesRow(String time) {
         int singleMinute  = Integer.parseInt(time.replace(":", "").substring(3,4));
 
