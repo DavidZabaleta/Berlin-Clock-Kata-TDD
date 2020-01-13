@@ -91,4 +91,17 @@ public class BerlinClockTest {
 
         Assert.assertEquals(expectedResult, result);
     }
+
+    @Test
+    @Parameters({
+            "00:00:00, YOOOOOOOOOOOOOOOOOOOOOOO",
+            "23:59:59, ORRRRRRROYYRYYRYYRYYYYYY",
+            "16:50:06, YRRROROOOYYRYYRYYRYOOOOO",
+            "11:37:01, ORROOROOOYYRYYRYOOOOYYOO",
+    })
+    public void methodEntireBerlinClockShouldReturnExpectedResultWhenEnterTime(String time, String expectedResult) {
+        String result = berlinClock.entireBerlinClock(time);
+
+        Assert.assertEquals(expectedResult, result);
+    }
 }
