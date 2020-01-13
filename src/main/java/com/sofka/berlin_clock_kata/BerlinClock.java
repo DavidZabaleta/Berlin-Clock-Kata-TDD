@@ -49,4 +49,16 @@ public class BerlinClock {
 
         return result.toString();
     }
+
+    public String fiveHoursRow(String time) {
+        int hour  = Integer.parseInt(time.replace(":", "").substring(0,2));
+        int hourBlock = hour / 5;
+        StringBuilder result = new StringBuilder("OOOO");
+
+        for (int i = 0; i < hourBlock; i++) {
+            result.setCharAt(i, RED_BLOCK);
+        }
+
+        return result.toString();
+    }
 }
