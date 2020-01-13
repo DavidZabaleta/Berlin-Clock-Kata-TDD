@@ -10,29 +10,28 @@ public class BerlinClock {
                fiveMinutesRow(time) + singleMinutesRow(time);
     }
 
-    public String singleMinutesRow(String time) {
-        int singleMinute  = Integer.parseInt(time.replace(":", "").substring(3,4));
+    public String secondsLamp(String time) {
+        int seconds  = getSpecificTimeNoPunctuationInARange(time, 4, 6);
 
-        switch (singleMinute){
-            case 1:
-            case 6:
-                return "YOOO";
-            case 2:
-            case 7:
-                return "YYOO";
-            case 3:
-            case 8:
-                return "YYYO";
-            case 4:
-            case 9:
-                return "YYYY";
-            default:
-                return "OOOO";
-        }
+        return (seconds % 2 == 0) ? String.valueOf(YELLOW_BLOCK) : String.valueOf(OFF_BLOCK);
+    }
+
+    public String fiveHoursRow(String time) {
+        int hours  = getSpecificTimeNoPunctuationInARange(time, 0, 2);
+        int hourBlock = hours / 5;
+
+        return getResult(hourBlock, RED_BLOCK);
+    }
+
+    public String singleHoursRow(String time) {
+        int singleHours  = getSpecificTimeNoPunctuationInARange(time, 1, 2);
+        int singleHoursBlock = singleHours % 5;
+
+        return getResult(singleHoursBlock, RED_BLOCK);
     }
 
     public String fiveMinutesRow(String time) {
-        int minutes  = Integer.parseInt(time.replace(":", "").substring(2,4));
+        int minutes  = getSpecificTimeNoPunctuationInARange(time, 2 , 4);
         int fiveMinutesBlock = minutes / 5;
         StringBuilder result = new StringBuilder("OOOOOOOOOOO");
 
@@ -46,29 +45,22 @@ public class BerlinClock {
         return result.toString();
     }
 
-    public String singleHoursRow(String time) {
-        int singleHours  = Integer.parseInt(time.replace(":", "").substring(1,2));
-        StringBuilder result = new StringBuilder("OOOO");
+    public String singleMinutesRow(String time) {
+        int singleMinute  = getSpecificTimeNoPunctuationInARange(time, 3, 4);
+        int singleMinuteBlock = singleMinute % 5;
 
-        for (int i = 0; i < singleHours % 5; i++) result.setCharAt(i, RED_BLOCK);
-
-        return result.toString();
+        return getResult(singleMinuteBlock, YELLOW_BLOCK);
     }
 
-    public String fiveHoursRow(String time) {
-        int hours  = Integer.parseInt(time.replace(":", "").substring(0,2));
-        int hourBlock = hours / 5;
-        StringBuilder result = new StringBuilder("OOOO");
-
-        for (int i = 0; i < hourBlock; i++) {
-            result.setCharAt(i, RED_BLOCK);
-        }
-
-        return result.toString();
+    public int getSpecificTimeNoPunctuationInARange(String time, int fromStringPosition, int toStringPosition) {
+        return Integer.parseInt(time.replace(":", "").substring(fromStringPosition, toStringPosition));
     }
 
-    public String secondsLamp(String time) {
-        int seconds  = Integer.parseInt(time.replace(":", "").substring(4,6));
-        return (seconds % 2 == 0) ? String.valueOf(YELLOW_BLOCK) : String.valueOf(OFF_BLOCK);
+    public String getResult(int condition, char colorLamp) {
+        StringBuilder result = new StringBuilder("OOOO");;
+
+        for (int i = 0; i < condition; i++) result.setCharAt(i, colorLamp);
+
+        return result.toString();
     }
 }
