@@ -6,14 +6,17 @@ public class BerlinClock {
     private static final char RED_BLOCK = 'R';
 
     public String entireBerlinClock(String time) {
-        return secondsLamp(time) + fiveHoursRow(time) + singleHoursRow(time) +
-               fiveMinutesRow(time) + singleMinutesRow(time);
+        return  secondsLamp(time) +
+                fiveHoursRow(time) +
+                singleHoursRow(time) +
+                fiveMinutesRow(time) +
+                singleMinutesRow(time);
     }
 
     public String secondsLamp(String time) {
         int seconds  = getSpecificTimeNoPunctuationInARange(time, 4, 6);
 
-        return (seconds % 2 == 0) ? String.valueOf(YELLOW_BLOCK) : String.valueOf(OFF_BLOCK);
+        return String.valueOf((seconds % 2 == 0) ? YELLOW_BLOCK : OFF_BLOCK);
     }
 
     public String fiveHoursRow(String time) {
@@ -36,11 +39,7 @@ public class BerlinClock {
         StringBuilder result = new StringBuilder("OOOOOOOOOOO");
 
         for (int i = 1; i <= fiveMinutesBlock; i++) {
-            if (i % 3 == 0) {
-                result.setCharAt(i - 1, RED_BLOCK);
-            } else {
-                result.setCharAt(i - 1, YELLOW_BLOCK);
-            }
+            result.setCharAt(i - 1, (i % 3 == 0) ?  RED_BLOCK : YELLOW_BLOCK);
         }
         return result.toString();
     }
